@@ -1,14 +1,14 @@
 import firebase from 'firebase'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCiZE1nvX0FX156qMQoL61ASJS-QrtYAGk",
-    authDomain: "loghours-3309e.firebaseapp.com",
-    databaseURL: "https://loghours-3309e.firebaseio.com",
-    projectId: "loghours-3309e",
-    storageBucket: "loghours-3309e.appspot.com",
-    messagingSenderId: "937481984887",
-    appId: "1:937481984887:web:47adb80e5e845806261f72",
-    measurementId: "G-J2JV8JBLQ9",
+    apiKey: "AIzaSyAS8aRic-PN04KPhCZiqKrFTiw8Mi0T5fc",
+    authDomain: "loghours-571d5.firebaseapp.com",
+    databaseURL: "https://loghours-571d5.firebaseio.com",
+    projectId: "loghours-571d5",
+    storageBucket: "loghours-571d5.appspot.com",
+    messagingSenderId: "114516881391",
+    appId: "1:114516881391:web:cbc88e7d1b8b861379901a",
+    measurementId: "G-37WDBKWFKW"
 }
 
 // Initialize Firebase
