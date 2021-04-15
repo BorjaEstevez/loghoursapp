@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'stretch',
-        marginTop:100,
+        marginTop:200,
     },
     text: {
         fontSize: 27,
