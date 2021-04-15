@@ -1,11 +1,14 @@
 
 import React, { createContext, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert, Animatable } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert, Animatable, VirtualizedList } from 'react-native';
 import StandardButton from '../components/StandardButton';
 import InputField from '../components/InputField';
 import Firebase from '../config/Firebasje';  
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { FloatingAction } from 'react-native-floating-action';
+
+
 
 
 class MainScreen extends React.Component {
@@ -20,12 +23,23 @@ class MainScreen extends React.Component {
     }
 
 
+//<IconButton style={{ color: orange[500] }}>add_circle</IconButton>
 
     render() {
         return (
             <View style={styles.container}>
-    
-               <Text>THIS IS THE MAIN SCREEN</Text>
+                <View style={styles.header}>
+                <Text style={styles.text}>Your Entries</Text>
+                <FloatingAction style={styles.actionbutton}/>
+                </View>
+
+                <View styles={styles.main}>
+
+                </View>
+
+                <View styles={styles.footer}>
+
+                </View>
             </View>
         );
     }
@@ -35,36 +49,31 @@ export default MainScreen;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#ebeced',
-        flex: 1,
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 20,
-    },
-    logo: {
-        height: 200,
-        width: 200,
-        resizeMode: 'cover',
-        marginBottom: 30,
-        marginTop: 30,
+        alignSelf: 'stretch',
+        marginTop:10,
     },
     text: {
         fontSize: 27,
-        marginBottom: 10,
+        marginBottom: 40,
         color: '#051d5f',
+        width:300,
+        
+        
     },
-    navButton: {
-        marginTop: 15,
+    actionbutton:{
+        width:10
     },
-    forgotButton: {
-        marginVertical: 20,
+    header:{
+        marginTop:100,
+        flexDirection:'row',
     },
-    navButtonText: {
-        fontSize: 17,
-        fontWeight: '500',
-        color: '#2e64e5',
+    main:{
+
     },
-    errorMessage: {
-        color: '#FE0000',
+    footer:{
+
     }
 });
