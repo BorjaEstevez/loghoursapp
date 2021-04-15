@@ -23,6 +23,11 @@ class MainScreen extends React.Component {
     }
 
 
+    goToAddEntry = () =>{
+        this.props.changeComponent('Four');
+    }
+
+
 //<IconButton style={{ color: orange[500] }}>add_circle</IconButton>
 
     render() {
@@ -30,13 +35,14 @@ class MainScreen extends React.Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                 <Text style={styles.text}>Your Entries</Text>
-                <FloatingAction style={styles.actionbutton}/>
+                <TouchableOpacity
+                 onPress={() => this.goToAddEntry()}
+                  style={styles.roundButton1}>
+                     <Text>I'm a button</Text>
+                 </TouchableOpacity>
                 </View>
-
                 <View styles={styles.main}>
-
                 </View>
-
                 <View styles={styles.footer}>
 
                 </View>
@@ -75,5 +81,14 @@ const styles = StyleSheet.create({
     },
     footer:{
 
-    }
+    },
+  roundButton1: {
+    width: 100,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    borderRadius: 100,
+    backgroundColor: 'orange',
+  }
 });

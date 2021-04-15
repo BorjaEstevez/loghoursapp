@@ -4,6 +4,7 @@ import { View, Alert, Text, TextInput, StyleSheet } from 'react-native'
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
 import MainScreen from './MainScreen';
+import AddEntry from './AddEntry';
 
 
 export default class LoginNavigation extends React.Component{
@@ -27,6 +28,8 @@ constructor(props) {
       return <RegisterScreen changeComponent={this.changeComponent} />
     } else if (component == 'Three') {
       return <MainScreen changeComponent={this.changeComponent} />
+    }else if (component == 'Four') {
+      return <AddEntry changeComponent={this.changeComponent} />
     }
   }
 
