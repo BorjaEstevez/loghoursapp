@@ -9,7 +9,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { FloatingAction } from 'react-native-floating-action';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import DatePicker from 'react-native-datepicker';
 
+const App = () => {
+  const [date, setDate] = useState('09-10-2020');}
 
 class AddEntry extends React.Component {
 
@@ -22,9 +25,9 @@ class AddEntry extends React.Component {
             
 
         };
-
+        
     }
-
+   
     render() {
       return (
 
@@ -50,19 +53,20 @@ class AddEntry extends React.Component {
     
     
     
-    
+   
     <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
         <Text style={{fontSize:20, marginRight:10, fontWeight: 'bold'}}>Date:</Text>
-          <TextInput
-          style={styles.input}
-          keyboardType="numeric"
-          placeholder="Shift start"
-         // value={start}
-          //onChangeText={text => setStart(text)}
-    
-            >
-    
-          </TextInput>
+         
+          <DatePicker
+          date={this.date} // Initial date from state
+          mode="date" // The enum of date, datetime and time
+          placeholder="select date"
+          format="DD-MM-YYYY"
+          minDate="01-01-2021"
+          maxDate="01-01-2100"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          />
         </View>
     
     <View style = {styles.viewStyleForLine}></View>
