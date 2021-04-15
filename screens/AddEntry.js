@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {Pressable, StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Pressable, StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function App() {
+export default function AddEntry() {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [task, setTask] = useState('');
@@ -15,86 +15,86 @@ export default function App() {
     <View style={styles.container}>
 
 
-<View style={styles.header}>
-<View style={{alignContent: "flex-start"}, {marginLeft: "2%"}}>
-            <Icon name="arrow-left" size={40} color="#FFFFFF" />
-            </View>
-                <Text style={styles.title}>
-                    New entry
+      <View style={styles.header}>
+        <View style={{ alignContent: "flex-start" }, { marginLeft: "2%" }}>
+          <Icon name="arrow-left" size={40} color="#FFFFFF" />
+        </View>
+        <Text style={styles.title}>
+          New entry
             </Text>
-            
-            <View style={{marginRight:"2%"}}>
-            <Icon name="save" size={40} color="#000000" />
-            </View>
-            
-</View>
+
+        <View style={{ marginRight: "2%" }}>
+          <Icon name="save" size={40} color="#000000" />
+        </View>
+
+      </View>
 
 
 
 
 
-<View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
-    <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>Date:</Text>
-      <TextInput
-      style={styles.input}
-      keyboardType="numeric"
-      placeholder="Shift start"
-      value={start}
-      onChangeText={text => setStart(text)}
-
-        >
-
-      </TextInput>
-    </View>
-
-<View style = {styles.viewStyleForLine}></View>
-    <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
-    <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>From:</Text>
-      <TextInput
-      style={styles.input}
-      keyboardType="numeric"
-      placeholder="Shift start"
-      value={start}
-      onChangeText={text => setStart(text)}
+      <View style={styles.field, { flexDirection: "row" }, { alignItems: "center" }}>
+        <Text style={{ fontSize: 20, marginTop: 5, marginRight: 10, fontWeight: 'bold' }}>Date:</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          placeholder="Shift start"
+          value={start}
+          onChangeText={text => setStart(text)}
 
         >
 
-      </TextInput>
-    </View>
+        </TextInput>
+      </View>
 
-    <View style={styles.field, {flexDirection:"row"}, {alignItems: "center"}}>
-      <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>To:</Text>
-      <TextInput
-      style={styles.input}
-      keyboardType="numeric"
-      placeholder="Shift end"
-      value={end}
-      onChangeText={text => setEnd(text)}
+      <View style={styles.viewStyleForLine}></View>
+      <View style={styles.field, { flexDirection: "row" }, { alignItems: "center" }}>
+        <Text style={{ fontSize: 20, marginTop: 5, marginRight: 10, fontWeight: 'bold' }}>From:</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          placeholder="Shift start"
+          value={start}
+          onChangeText={text => setStart(text)}
 
         >
 
-      </TextInput>
-    </View>
-    <View style = {styles.viewStyleForLine}></View>
-      <View style={styles.field, {alignItems: "center"}}>
-      <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'},{flexDirection:"row"}}>Work task</Text>
+        </TextInput>
+      </View>
+
+      <View style={styles.field, { flexDirection: "row" }, { alignItems: "center" }}>
+        <Text style={{ fontSize: 20, marginTop: 5, marginRight: 10, fontWeight: 'bold' }}>To:</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          placeholder="Shift end"
+          value={end}
+          onChangeText={text => setEnd(text)}
+
+        >
+
+        </TextInput>
+      </View>
+      <View style={styles.viewStyleForLine}></View>
+      <View style={styles.field, { alignItems: "center" }}>
+        <Text style={{ fontSize: 20, marginTop: 5, marginRight: 10, fontWeight: 'bold' }, { flexDirection: "row" }}>Work task</Text>
         <DropDownPicker items={[
           { label: 'Coding', value: "coding" },
           { label: 'Paperwork', value: "paperwork" },
           { label: 'Cleaning', value: "Cleaning" },
           { label: 'Project planning', value: "project planning" },
-          
-          
+
+
         ]}
-        
-        zIndex={5000}
+
+          zIndex={5000}
         ></DropDownPicker>
 
-<View style = {styles.viewStyleForLine}></View>
-        
+        <View style={styles.viewStyleForLine}></View>
+
 
       </View>
-      
+
 
     </View>
   );
@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
-   
-    
+
+
   },
   header: {
     backgroundColor: 'skyblue',
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  
+
   row: {
     margin: 20,
     padding: 10
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonText: {
-    color:"#2B2B52",
+    color: "#2B2B52",
     fontSize: 20
   },
   input: {
@@ -164,21 +164,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     backgroundColor: '#DCDCDC'
   },
-  
-  dropdown:{
+
+  dropdown: {
     zIndex: 500,
   },
   field: {
     margin: 10,
-    flexDirection:"row"
+    flexDirection: "row"
   },
-  dropdown:{
+  dropdown: {
     zIndex: 1000,
   },
   viewStyleForLine: {
-    borderBottomColor: "black", 
-    borderBottomWidth: StyleSheet.hairlineWidth, 
-    alignSelf:'stretch',
+    borderBottomColor: "black",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    alignSelf: 'stretch',
     width: "75%",
     marginLeft: "12%"
   }
