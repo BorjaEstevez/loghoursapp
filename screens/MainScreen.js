@@ -38,7 +38,7 @@ class MainScreen extends React.Component {
                 <TouchableOpacity
                  onPress={() => this.goToAddEntry()}
                   style={styles.roundButton1}>
-                     <Text>I'm a button</Text>
+                     <Text>+</Text>
                  </TouchableOpacity>
                 </View>
                 <View styles={styles.main}>
@@ -63,9 +63,10 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 27,
-        marginBottom: 40,
+        marginBottom: 10,
         color: '#051d5f',
-        width:300,
+        width:200,
+        alignSelf: 'center',
         
         
     },
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
     header:{
         marginTop:100,
         flexDirection:'row',
+        marginLeft: 30,
     },
     main:{
 
@@ -83,12 +85,12 @@ const styles = StyleSheet.create({
 
     },
   roundButton1: {
-    width: 100,
-    height: 100,
+    width: 50,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-    borderRadius: 100,
+    borderRadius: 50,
     backgroundColor: 'orange',
   }
 });

@@ -32,17 +32,17 @@ class AddEntry extends React.Component {
     
     
     <View style={styles.header}>
-    <View style={{alignContent: "flex-start"}, {marginLeft: "2%"}}>
-                <Icon name="arrow-left" size={40} color="#FFFFFF" />
+    <View style={{alignContent: "flex-start"}, {marginLeft: "1%"}, {marginRight: "20%"}}>
+                <Icon name="arrow-left" size={30} color="#000000" />
                 </View>
                     <Text style={styles.title}>
-                        Edit entry
+                       Add Entry
                 </Text>
-                <View style={{marginRight:"2%"}}>
-                <Icon name="trash" size={40} color="#000000" />
+                <View style={{marginRight:"20%"}, {marginLeft: "10%"}}>
+                <Icon name="trash" size={30} color="#000000" />
                 </View>
-                <View style={{marginRight:"2%"}}>
-                <Icon name="save" size={40} color="#000000" />
+                <View style={{marginRight:"1%"}, {marginLeft:"5%"}}>
+                <Icon name="save" size={30} color="#000000" />
                 </View>
                 
     </View>
@@ -52,7 +52,7 @@ class AddEntry extends React.Component {
     
     
     <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
-        <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>Date:</Text>
+        <Text style={{fontSize:20, marginRight:10, fontWeight: 'bold'}}>Date:</Text>
           <TextInput
           style={styles.input}
           keyboardType="numeric"
@@ -122,7 +122,12 @@ class AddEntry extends React.Component {
 export default AddEntry;
 
 const styles = StyleSheet.create({
-    container: {
+  title:{
+        width:150,
+        fontSize:30,
+        fontWeight: 'bold',
+  },
+  container: {
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
@@ -135,7 +140,6 @@ const styles = StyleSheet.create({
         color: '#051d5f',
         width:300,
         
-        
     },
     actionbutton:{
         width:10
@@ -143,6 +147,7 @@ const styles = StyleSheet.create({
     header:{
         marginTop:100,
         flexDirection:'row',
+        marginBottom: 100,
     },
     main:{
 
