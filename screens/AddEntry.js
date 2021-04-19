@@ -11,6 +11,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DatePicker from 'react-native-datepicker';
 
+//<Icon
+     //             onPress={() => this.goToMain()}
+      //            name="arrow-left" size={30} color="#000000"  />
+
 const App = () => {
   const [date, setDate] = useState('09-10-2020');}
 
@@ -21,13 +25,14 @@ class AddEntry extends React.Component {
         this.state = {
             start: '',
             end:'',
-
-            
-
-        };
-        
+        }; 
     }
    
+
+    goMainScreen = () =>{
+      this.props.changeComponent('Three');
+  }
+
     render() {
       return (
 
@@ -36,7 +41,11 @@ class AddEntry extends React.Component {
     
     <View style={styles.header}>
     <View style={{alignContent: "flex-start"}, {marginLeft: "1%"}, {marginRight: "20%"}}>
-                <Icon name="arrow-left" size={30} color="#000000" />
+               <StandardButton onPress={() => this.goMainScreen()}
+                  style={styles.roundButton2}>
+                    <Text style={styles.title1}>
+                      Go Back</Text>
+                  </StandardButton>
                 </View>
                     <Text style={styles.title}>
                        Add Entry
@@ -100,15 +109,12 @@ class AddEntry extends React.Component {
         <View style = {styles.viewStyleForLine}></View>
           <View style={styles.field, {alignItems: "center"}}>
           <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>Work task</Text>
-            <DropDownPicker items={[
+            <DropDownPicker style={{width:200, backgroundColor: 'white'}} items={[
               { label: 'Coding', value: "coding" },
               { label: 'Paperwork', value: "paperwork" },
               { label: 'Cleaning', value: "Cleaning" },
               { label: 'Project planning', value: "project planning" },
-              
-              
             ]}
-            
             zIndex={50}
             ></DropDownPicker>
     
@@ -130,7 +136,21 @@ const styles = StyleSheet.create({
         width:150,
         fontSize:30,
         fontWeight: 'bold',
-  },
+        color: '#fff',    
+    },
+    title1:{
+      color: 'white',
+    },
+    roundButton2:{
+      width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    padding: 10,
+    borderRadius: 50,
+    backgroundColor: 'black',
+    },
   container: {
         backgroundColor: 'white',
         alignItems: 'center',
@@ -149,14 +169,69 @@ const styles = StyleSheet.create({
         width:10
     },
     header:{
-        marginTop:100,
+      backgroundColor: 'skyblue',
+        marginTop:150,
         flexDirection:'row',
-        marginBottom: 100,
+        marginBottom: 90,
     },
     main:{
 
     },
     footer:{
-
-    }
+        marginTop: 20,
+        backgroundColor:'skyblue',
+        flexDirection:'row',
+    },
+    row:{
+        margin:20,
+        padding:10,
+    },
+    flex:{
+          flexDirection:'row',
+    },
+    button: {
+      margin: 30,
+      flexDirection: "row",
+      padding: 10,
+      backgroundColor: "#73CED6",
+      width: 150,
+      borderRadius: 15,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    buttonText: {
+      color: "#2B2B52",
+      fontSize: 20
+    },
+    input: {
+      height: 40,
+      width: "50%",
+      borderColor: 'gray',
+      borderWidth: 1,
+      borderRadius: 8,
+      marginTop: 10,
+      marginBottom: 20,
+      fontSize: 18,
+      backgroundColor: '#DCDCDC'
+    },
+  
+    dropdown: {
+      zIndex: 500,
+      width:100,
+    },
+    field: {
+      margin: 10,
+      flexDirection: "row"
+    },
+    dropdown: {
+      zIndex: 1000,
+    },
+    viewStyleForLine: {
+      borderBottomColor: "black",
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      alignSelf: 'stretch',
+      width: "75%",
+      marginLeft: "12%",
+      color: 'black',
+    }  
 });
