@@ -31,7 +31,10 @@ class AddEntry extends React.Component {
 
     goMainScreen = () =>{
       this.props.changeComponent('Three');
+      console.log('buttonpressed')
   }
+
+
 
     render() {
       return (
@@ -41,19 +44,16 @@ class AddEntry extends React.Component {
     
     <View style={styles.header}>
     <View style={{alignContent: "flex-start"}, {marginLeft: "1%"}, {marginRight: "20%"}}>
-               <StandardButton onPress={() => this.goMainScreen()}
-                  style={styles.roundButton2}>
-                    <Text style={styles.title1}>
-                      Go Back</Text>
-                  </StandardButton>
+      <TouchableOpacity onPress={() => this.goMainScreen()}
+      style={styles.buttonpressed}>
+          <Icon name="arrow-left" size={40} color="#FFFFFF" />
+          </TouchableOpacity>
                 </View>
                     <Text style={styles.title}>
                        Add Entry
                 </Text>
-                <View style={{marginRight:"20%"}, {marginLeft: "10%"}}>
-                <Icon name="trash" size={30} color="#000000" />
-                </View>
-                <View style={{marginRight:"1%"}, {marginLeft:"5%"}}>
+
+                <View style={{marginRight:"1%"}, {marginLeft:"20%"}}>
                 <Icon name="save" size={30} color="#000000" />
                 </View>
                 
@@ -109,7 +109,7 @@ class AddEntry extends React.Component {
         <View style = {styles.viewStyleForLine}></View>
           <View style={styles.field, {alignItems: "center"}}>
           <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>Work task</Text>
-            <DropDownPicker style={{width:200, backgroundColor: 'white'}} items={[
+            <DropDownPicker style={{width:170, backgroundColor: 'white'}} items={[
               { label: 'Coding', value: "coding" },
               { label: 'Paperwork', value: "paperwork" },
               { label: 'Cleaning', value: "Cleaning" },
@@ -117,13 +117,8 @@ class AddEntry extends React.Component {
             ]}
             zIndex={50}
             ></DropDownPicker>
-    
-    <View style = {styles.viewStyleForLine}></View>
-    
-    
+          <View style = {styles.viewStyleForLine}></View>
           </View>
-          
-    
         </View>
       );
     }
@@ -138,71 +133,22 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#fff',    
     },
-    title1:{
-      color: 'white',
-    },
-    roundButton2:{
-      width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
-    padding: 10,
-    borderRadius: 50,
-    backgroundColor: 'black',
-    },
   container: {
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'stretch',
-        marginTop:200,
-    },
-    text: {
-        fontSize: 27,
-        marginBottom: 40,
-        color: '#051d5f',
-        width:300,
-        
-    },
-    actionbutton:{
-        width:10
+        marginTop:0,
     },
     header:{
       backgroundColor: 'skyblue',
-        marginTop:150,
+        marginTop:410,
         flexDirection:'row',
-        marginBottom: 90,
+        marginBottom: 0,
+        width:390
     },
-    main:{
-
-    },
-    footer:{
-        marginTop: 20,
-        backgroundColor:'skyblue',
-        flexDirection:'row',
-    },
-    row:{
-        margin:20,
-        padding:10,
-    },
-    flex:{
-          flexDirection:'row',
-    },
-    button: {
-      margin: 30,
-      flexDirection: "row",
-      padding: 10,
-      backgroundColor: "#73CED6",
-      width: 150,
-      borderRadius: 15,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    buttonText: {
-      color: "#2B2B52",
-      fontSize: 20
-    },
+   
+    
     input: {
       height: 40,
       width: "50%",
@@ -214,17 +160,9 @@ const styles = StyleSheet.create({
       fontSize: 18,
       backgroundColor: '#DCDCDC'
     },
-  
-    dropdown: {
-      zIndex: 500,
-      width:100,
-    },
     field: {
       margin: 10,
       flexDirection: "row"
-    },
-    dropdown: {
-      zIndex: 1000,
     },
     viewStyleForLine: {
       borderBottomColor: "black",
@@ -232,6 +170,10 @@ const styles = StyleSheet.create({
       alignSelf: 'stretch',
       width: "75%",
       marginLeft: "12%",
-      color: 'black',
-    }  
+      color: 'black'
+    },
+    buttonpressed: {
+      width:50,
+      height:50
+    }
 });

@@ -30,7 +30,9 @@ constructor(props) {
       return <MainScreen changeComponent={this.changeComponent} />
     }else if (component == 'Four') {
       return <AddEntry changeComponent={this.changeComponent} />
-    }
+    }//else if (component == 'Five') {
+     // return <MainScreen changeComponent={this.changeComponent} />
+   // }
   }
 
   render() {

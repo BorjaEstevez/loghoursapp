@@ -23,7 +23,9 @@ class EditEntry extends React.Component {
         };
 
     }
-
+    delete = () => {
+      console.log("trash button pressed");
+    }
     render() {
       return (
 
@@ -37,8 +39,10 @@ class EditEntry extends React.Component {
                     <Text style={styles.title}>
                         Edit entry
                 </Text>
-                <View style={{marginRight:"2%"}}>
-                <Icon name="trash" size={40} color="#000000" />
+                <View style={{marginRight:"20%"}, {marginLeft: "10%"}}>
+                  <TouchableOpacity onPress={() => this.delete()}>
+                  <Icon name="trash" size={30} color="#000000" />
+                  </TouchableOpacity>
                 </View>
                 <View style={{marginRight:"2%"}}>
                 <Icon name="save" size={40} color="#000000" />
