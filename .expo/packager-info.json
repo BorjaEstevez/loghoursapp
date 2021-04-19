@@ -5,5 +5,5 @@
   "expoServerNgrokUrl": "https://fr-c3g.anonymous.loghoursapp.exp.direct",
   "packagerNgrokUrl": "https://packager.fr-c3g.anonymous.loghoursapp.exp.direct",
   "ngrokPid": 92227,
-  "webpackServerPort": null
+  "webpackServerPort": 19014
 }
