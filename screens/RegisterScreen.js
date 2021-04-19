@@ -26,7 +26,7 @@ class RegisterScreen extends React.Component {
     }
 
 
-    //Het wachtwoord moet langer dan 5 tekens zijn
+    
     handleValidPassword = (val) => {
         if (val.trim().length >= 5) {
             this.state.isValidPassword = true;
@@ -36,7 +36,7 @@ class RegisterScreen extends React.Component {
         }
     }
 
-    //De opgegeven naam moet langer zijn dan 1 teken, dus niet nul en moet bestaan uit tekens, geen letters
+    
     handleValidName = (val) => {
         if (val.trim().length >= 1 && isNaN(val)) {
             this.state.isValidName = true;
@@ -50,7 +50,7 @@ class RegisterScreen extends React.Component {
         }
     }
 
-    //De Email moet voldoen aan de regex van een email "XX@domain.com" Een doorsnee email is ook langer dan 5 tekens
+    
     handleValidEmail = (val) => {
         var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (val.trim().length >= 5) {
@@ -68,12 +68,12 @@ class RegisterScreen extends React.Component {
 
    
 
-    //De username moet langer zijn dan 1 teken, daarna wordt er gecheckt of de username die ingevoerd is al bestaat in de API, als dat is, krijgt de gebruiker een alert
+    
     handleValidUsername = (val) => {
         if (val.trim().length >= 1) {
             for (let item of this.state.users) {
                 if (item.username == val) {
-                    alert("De ingevoerde username " + item.username + " is al in gebruik. Probeer een andere username.");
+                    alert("The username entered " + item.username + " is already in use. Try a different username.");
                     this.state.isvalidUsername = false;
                     break;
                 }
@@ -84,15 +84,15 @@ class RegisterScreen extends React.Component {
         }
         else{
             this.state.isvalidUsername = false;
-            alert("De username moet langer zijn dan 1 teken");
+            alert("The username must be longer than 1 character");
         }
     }
 
-    //AANMAKEN NIEUWE USER in Firebase
+    
     handleRegister = () => {
         if (this.state.isValidName) {
             if(this.state.name==""){
-                alert("Geef input bij de naam");
+                alert("give input with the name");
                 return;
             }
             console.log("name: ", this.state.name);
@@ -100,13 +100,13 @@ class RegisterScreen extends React.Component {
                 console.log("username: ", this.state.username);
                 if (this.state.isValidPassword) {
                     if (this.state.password == "") {
-                        alert("Geef input bij het password");
+                        alert("give input with the password");
                         return;
                     }
                     console.log("password: ", this.state.password);
                     if (this.state.isValidEmail) {
                         if (this.state.email == "") {
-                            alert("Geef input bij de email");
+                            alert("give input with the email");
                             return;
                         }
                         console.log("email: ", this.state.email);
@@ -129,7 +129,7 @@ class RegisterScreen extends React.Component {
     }
 
     handleSignUp = () => {
-        Firebase.auth()         //User wordt aangemaakt in FireBase -> voor authenticatie (veiliger dan wanneer we deze info in de API zouden bewaren)
+        Firebase.auth()         
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(() => this.goToLogin())
             .catch(error => console.log(error))
