@@ -1,6 +1,6 @@
 
 import React, { createContext, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert, Animatable, VirtualizedList } from 'react-native';
+import { View, Text, Pressable, TextInput, TouchableOpacity, Image, StyleSheet, Alert, Animatable, VirtualizedList, Platform } from 'react-native';
 import StandardButton from '../components/StandardButton';
 import InputField from '../components/InputField';
 import Firebase from '../config/Firebasje';  
@@ -9,14 +9,24 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { FloatingAction } from 'react-native-floating-action';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import DatePicker from 'react-native-datepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-//<Icon
-     //             onPress={() => this.goToMain()}
-      //            name="arrow-left" size={30} color="#000000"  />
+//this gives a hook error and I'm not able to fix it, this all 4 constants.
+//Also if you put them inside the class AddEntry for some reason it doesn't works.
 
-const App = () => {
-  const [date, setDate] = useState('09-10-2020');}
+//Until here
+
+//THIS IS THE OLD DATEPICKER, THAT DOESN'T WORKS, DON'T DELETE IT JUST IN CASE
+//<DatePicker
+        //  date={this.date} // Initial date from state
+      //    mode="date" // The enum of date, datetime and time
+          //placeholder="select date"
+          //format="DD-MM-YYYY"
+          //minDate="01-01-2021"
+          //maxDate="01-01-2100"
+          //confirmBtnText="Confirm"
+          //cancelBtnText="Cancel"
+          // />
 
 class AddEntry extends React.Component {
 
@@ -25,15 +35,32 @@ class AddEntry extends React.Component {
         this.state = {
             start: '',
             end:'',
+            date: new Date(),
+            show: true,
         }; 
     }
-   
+    //const [date, setDate] = useState(new Date()); // State variable for the data.
+//const [show,setShow] = useState(false); // State variable, that controls, if calendar is visible or not.
 
-    goMainScreen = () =>{
+  onChange = (_, selectedDate) => {
+      if (Platform.OS === 'ios') { 
+        this.state.show(false);
+      }
+      currentDate = selectedDate || date;
+      this.state.date(currentDate);
+  };
+
+  toggle = () => {
+      this.state.show(prevShow => prevShow);
+      console.log('aqui')
+  }
+
+  goMainScreen = () => {
       this.props.changeComponent('Three');
       console.log('buttonpressed')
   }
 
+  //{this.date.getDate()}.{this.date.getMonth() + 1}.{this.date.getFullYear()}
 
 
     render() {
@@ -58,24 +85,36 @@ class AddEntry extends React.Component {
                 </View>
                 
     </View>
-    
-    
-    
-    
    
     <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
         <Text style={{fontSize:20, marginRight:10, fontWeight: 'bold'}}>Date:</Text>
          
-          <DatePicker
-          date={this.date} // Initial date from state
-          mode="date" // The enum of date, datetime and time
-          placeholder="select date"
-          format="DD-MM-YYYY"
-          minDate="01-01-2021"
-          maxDate="01-01-2100"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
+          {this.show && Platform.OS === 'ios' &&  (
+          <DateTimePicker
+            style={{width: 320}}
+            mode={'date'}
+            display="inline"
+            value={this.date}
+            onChange={this.onChange}
           />
+          )}
+          {this.show && Platform.OS === 'android' &&  (
+          <DateTimePicker
+            mode={'date'}
+            display="default"
+            value={this.date}
+            onChange={this.onChange}
+          />
+          )}
+
+        <Pressable 
+          onPress={this.toggle}>
+          <Text>
+            problem here
+            {this.state.date}
+          </Text>
+        </Pressable>
+          
         </View>
     
     <View style = {styles.viewStyleForLine}></View>
@@ -147,8 +186,6 @@ const styles = StyleSheet.create({
         marginBottom: 0,
         width:390
     },
-   
-    
     input: {
       height: 40,
       width: "50%",
