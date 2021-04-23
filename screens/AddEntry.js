@@ -11,11 +11,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-//this gives a hook error and I'm not able to fix it, this all 4 constants.
-//Also if you put them inside the class AddEntry for some reason it doesn't works.
-
-//Until here
-
 //THIS IS THE OLD DATEPICKER, THAT DOESN'T WORKS, DON'T DELETE IT JUST IN CASE
 //<DatePicker
         //  date={this.date} // Initial date from state
@@ -40,19 +35,24 @@ class AddEntry extends React.Component {
         }; 
     }
     //const [date, setDate] = useState(new Date()); // State variable for the data.
-//const [show,setShow] = useState(false); // State variable, that controls, if calendar is visible or not.
+    //const [show,setShow] = useState(false); // State variable, that controls, if calendar is visible or not.
+
+    // I don't know if this onChange and toggle its properly code by the way.
 
   onChange = (_, selectedDate) => {
       if (Platform.OS === 'ios') { 
-        this.state.show(false);
+        this.setState({show: false})
+        //this.state.show(false);
       }
       currentDate = selectedDate || date;
-      this.state.date(currentDate);
+      this.setState({date: currentDate})
+      //this.state.date(currentDate);
   };
 
   toggle = () => {
-      this.state.show(prevShow => prevShow);
-      console.log('aqui')
+    this.setState(state => ({
+      prevShow: !state.prevShow
+    }))
   }
 
   goMainScreen = () => {
@@ -60,8 +60,7 @@ class AddEntry extends React.Component {
       console.log('buttonpressed')
   }
 
-  //{this.date.getDate()}.{this.date.getMonth() + 1}.{this.date.getFullYear()}
-
+  //The problem right now seems to be here: {this.state.date}  /// do ctrl+f and search it
 
     render() {
       return (
@@ -89,20 +88,20 @@ class AddEntry extends React.Component {
     <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
         <Text style={{fontSize:20, marginRight:10, fontWeight: 'bold'}}>Date:</Text>
          
-          {this.show && Platform.OS === 'ios' &&  (
+          {this.state.show && Platform.OS === 'ios' &&  (
           <DateTimePicker
             style={{width: 320}}
             mode={'date'}
             display="inline"
-            value={this.date}
+            value={this.state.date}
             onChange={this.onChange}
           />
           )}
-          {this.show && Platform.OS === 'android' &&  (
+          {this.state.show && Platform.OS === 'android' &&  (
           <DateTimePicker
             mode={'date'}
             display="default"
-            value={this.date}
+            value={this.state.date}
             onChange={this.onChange}
           />
           )}
@@ -110,8 +109,8 @@ class AddEntry extends React.Component {
         <Pressable 
           onPress={this.toggle}>
           <Text>
-            problem here
-            {this.state.date}
+          {this.state.date.getDate()}.{this.state.date.getMonth() + 1}.{this.state.date.getFullYear()}
+          
           </Text>
         </Pressable>
           
