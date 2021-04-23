@@ -40,10 +40,10 @@ class AddEntry extends React.Component {
     // I don't know if this onChange and toggle its properly code by the way.
 
   onChange = (_, selectedDate) => {
-      if (Platform.OS === 'ios') { 
+     // if (Platform.OS === 'ios') { 
         this.setState({show: false})
         //this.state.show(false);
-      }
+     // }
       currentDate = selectedDate || date;
       this.setState({date: currentDate})
       //this.state.date(currentDate);
@@ -51,7 +51,7 @@ class AddEntry extends React.Component {
 
   toggle = () => {
     this.setState(state => ({
-      prevShow: !state.prevShow
+      show: !state.show
     }))
   }
 
