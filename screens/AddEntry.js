@@ -85,8 +85,8 @@ class AddEntry extends React.Component {
                 
     </View>
    
-    <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
-        <Text style={{fontSize:20, marginRight:10, fontWeight: 'bold'}}>Date:</Text>
+    <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }, {marginBottom:20}}>
+        <Text style={{fontSize:20, marginRight:10, fontWeight: 'bold', marginBottom:10}}>Date:</Text>
          
           {this.state.show && Platform.OS === 'ios' &&  (
           <DateTimePicker
@@ -117,8 +117,8 @@ class AddEntry extends React.Component {
         </View>
     
     <View style = {styles.viewStyleForLine}></View>
-        <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
-        <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>From:</Text>
+        <View style={styles.field}>
+        <Text style={{fontSize:20, marginTop:10, marginRight:10, fontWeight: 'bold'}}>From</Text>
           <TextInput
           style={styles.input}
           keyboardType="numeric"
@@ -131,8 +131,8 @@ class AddEntry extends React.Component {
           </TextInput>
         </View>
     
-        <View style={styles.field, {flexDirection:"row"}, {alignItems: "center"}}>
-          <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>To:</Text>
+        <View style={styles.field, {flexDirection:"row"}}>
+          <Text style={{fontSize:20, marginTop:15, marginRight:10, fontWeight: 'bold'}}>To</Text>
           <TextInput
           style={styles.input}
           keyboardType="numeric"
@@ -145,7 +145,7 @@ class AddEntry extends React.Component {
           </TextInput>
         </View>
         <View style = {styles.viewStyleForLine}></View>
-          <View style={styles.field, {alignItems: "center"}}>
+          <View style={styles.field}>
           <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>Work task</Text>
             <DropDownPicker style={{width:170, backgroundColor: 'white'}} items={[
               { label: 'Coding', value: "coding" },
@@ -153,7 +153,8 @@ class AddEntry extends React.Component {
               { label: 'Cleaning', value: "Cleaning" },
               { label: 'Project planning', value: "project planning" },
             ]}
-            zIndex={50}
+            onChangeItem={item => setTask(item.value)}
+            zIndex={4000}
             ></DropDownPicker>
           <View style = {styles.viewStyleForLine}></View>
           </View>
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
     },
     input: {
       height: 40,
-      width: "50%",
+      width: "40%",
       borderColor: 'gray',
       borderWidth: 1,
       borderRadius: 8,
