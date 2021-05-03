@@ -156,7 +156,7 @@ class AddEntry extends React.Component {
             onChangeItem={item => setTask(item.value)}
             zIndex={4000}
             ></DropDownPicker>
-          <View style = {styles.viewStyleForLine}></View>
+          
           </View>
         </View>
       );
