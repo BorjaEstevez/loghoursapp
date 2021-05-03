@@ -1,6 +1,6 @@
 
 import React, { createContext, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert, Animatable, VirtualizedList } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, Image, StyleSheet, Alert, Animatable, VirtualizedList } from 'react-native';
 import StandardButton from '../components/StandardButton';
 import InputField from '../components/InputField';
 import Firebase from '../config/Firebasje';  
@@ -16,7 +16,8 @@ import DatePicker from 'react-native-datepicker';
       //            name="arrow-left" size={30} color="#000000"  />
 
 const App = () => {
-  const [date, setDate] = useState('09-10-2020');}
+  const [date, setDate] = useState('09-10-2020');
+  const [task, setTask] = useState('');}
 
 class AddEntry extends React.Component {
 
@@ -40,7 +41,7 @@ class AddEntry extends React.Component {
     
     
     <View style={styles.header}>
-    <View style={{alignContent: "flex-start"}, {marginLeft: "1%"}, {marginRight: "20%"}}>
+    <View style={ {marginLeft: "1%"}, {marginRight: "20%"}}>
                <StandardButton onPress={() => this.goMainScreen()}
                   style={styles.roundButton2}>
                     <Text style={styles.title1}>
@@ -50,9 +51,11 @@ class AddEntry extends React.Component {
                     <Text style={styles.title}>
                        Add Entry
                 </Text>
+                
                 <View style={{marginRight:"20%"}, {marginLeft: "10%"}}>
                 <Icon name="trash" size={30} color="#000000" />
                 </View>
+                
                 <View style={{marginRight:"1%"}, {marginLeft:"5%"}}>
                 <Icon name="save" size={30} color="#000000" />
                 </View>
@@ -63,8 +66,8 @@ class AddEntry extends React.Component {
     
     
    
-    <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
-        <Text style={{fontSize:20, marginRight:10, fontWeight: 'bold'}}>Date:</Text>
+    <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }, {marginBottom:20}}>
+        <Text style={{fontSize:20, marginRight:10, fontWeight: 'bold', marginBottom:10}}>Date:</Text>
          
           <DatePicker
           date={this.date} // Initial date from state
@@ -79,8 +82,8 @@ class AddEntry extends React.Component {
         </View>
     
     <View style = {styles.viewStyleForLine}></View>
-        <View style={styles.field, {flexDirection:"row"}, {alignItems: "center" }}>
-        <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>From:</Text>
+        <View style={styles.field}>
+        <Text style={{fontSize:20, marginTop:10, marginRight:10, fontWeight: 'bold'}}>From</Text>
           <TextInput
           style={styles.input}
           keyboardType="numeric"
@@ -93,8 +96,8 @@ class AddEntry extends React.Component {
           </TextInput>
         </View>
     
-        <View style={styles.field, {flexDirection:"row"}, {alignItems: "center"}}>
-          <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>To:</Text>
+        <View style={styles.field, {flexDirection:"row"}}>
+          <Text style={{fontSize:20, marginTop:15, marginRight:10, fontWeight: 'bold'}}>To</Text>
           <TextInput
           style={styles.input}
           keyboardType="numeric"
@@ -107,22 +110,23 @@ class AddEntry extends React.Component {
           </TextInput>
         </View>
         <View style = {styles.viewStyleForLine}></View>
-          <View style={styles.field, {alignItems: "center"}}>
+          <View style={styles.field}>
           <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>Work task</Text>
-            <DropDownPicker style={{width:200, backgroundColor: 'white'}} items={[
+            <DropDownPicker style={{width:150, height: 100, backgroundColor: 'white'}} items={[
               { label: 'Coding', value: "coding" },
               { label: 'Paperwork', value: "paperwork" },
               { label: 'Cleaning', value: "Cleaning" },
               { label: 'Project planning', value: "project planning" },
             ]}
-            zIndex={50}
+            onChangeItem={item => setTask(item.value)}
+            zIndex={4000}
             ></DropDownPicker>
     
-    <View style = {styles.viewStyleForLine}></View>
+    
     
     
           </View>
-          
+          <View style = {styles.viewStyleForLine}></View>
     
         </View>
       );
@@ -156,7 +160,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'stretch',
-        marginTop:200,
+        marginTop: 30,
     },
     text: {
         fontSize: 27,
@@ -170,7 +174,7 @@ const styles = StyleSheet.create({
     },
     header:{
       backgroundColor: 'skyblue',
-        marginTop:150,
+
         flexDirection:'row',
         marginBottom: 90,
     },
@@ -205,7 +209,7 @@ const styles = StyleSheet.create({
     },
     input: {
       height: 40,
-      width: "50%",
+      width: "40%",
       borderColor: 'gray',
       borderWidth: 1,
       borderRadius: 8,
@@ -216,7 +220,7 @@ const styles = StyleSheet.create({
     },
   
     dropdown: {
-      zIndex: 500,
+      
       width:100,
     },
     field: {
