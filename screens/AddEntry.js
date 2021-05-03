@@ -95,7 +95,10 @@ class AddEntry extends React.Component {
                 </Text>
 
           <View style={{ marginRight: "1%" }, { marginLeft: "20%" }}>
+            <TouchableOpacity onPress ={() => this.handleSave()}
+            style={styles.buttonpressed}>
             <Icon name="save" size={30} color="#000000" />
+            </TouchableOpacity>
           </View>
 
         </View>
@@ -173,11 +176,6 @@ class AddEntry extends React.Component {
           ></DropDownPicker>
 
         </View>
-        <Button
-          onPress={() => this.handleSave()}
-          title="Save"
-          color="#841584"
-        />
       </View>
     );
   }
