@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19010,
-  "expoServerPort": 19011,
-  "packagerPort": 19011,
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
   "expoServerNgrokUrl": "https://fr-c3g.anonymous.loghoursapp.exp.direct",
   "packagerNgrokUrl": "https://packager.fr-c3g.anonymous.loghoursapp.exp.direct",
-  "ngrokPid": 96349,
+  "ngrokPid": 5412,
   "webpackServerPort": 19014
 }

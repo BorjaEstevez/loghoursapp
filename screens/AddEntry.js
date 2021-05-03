@@ -147,7 +147,7 @@ class AddEntry extends React.Component {
         <View style = {styles.viewStyleForLine}></View>
           <View style={styles.field}>
           <Text style={{fontSize:20, marginTop:5, marginRight:10, fontWeight: 'bold'}}>Work task</Text>
-            <DropDownPicker style={{width:170, backgroundColor: 'white'}} items={[
+            <DropDownPicker style={{width:150, backgroundColor: 'white'}} items={[
               { label: 'Coding', value: "coding" },
               { label: 'Paperwork', value: "paperwork" },
               { label: 'Cleaning', value: "Cleaning" },
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     },
     header:{
       backgroundColor: 'skyblue',
-        marginTop:410,
+        marginTop:30,
         flexDirection:'row',
         marginBottom: 0,
         width:390
@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
       alignSelf: 'stretch',
       width: "75%",
       marginLeft: "12%",
+      marginTop: 70,
       color: 'black'
     },
     buttonpressed: {
