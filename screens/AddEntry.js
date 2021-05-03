@@ -63,7 +63,7 @@ class AddEntry extends React.Component {
     const db = Firebase.firestore();
     const current = Firebase.auth().currentUser;
     console.log(current)
-   
+    this.goMainScreen();
 
     db.collection("users").doc(current.uid).collection("workingdays").doc(this.state.date.toDateString()).set({
       shiftStart: "startTime",
@@ -74,14 +74,10 @@ class AddEntry extends React.Component {
     
 }
 
-
-  //The problem right now seems to be here: {this.state.date}  /// do ctrl+f and search it
-
   render() {
     return (
 
       <View style={styles.container}>
-
 
         <View style={styles.header}>
           <View style={{ alignContent: "flex-start" }, { marginLeft: "1%" }, { marginRight: "20%" }}>
