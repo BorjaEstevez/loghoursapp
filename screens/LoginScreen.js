@@ -60,7 +60,7 @@ class LoginScreen extends React.Component {
     }
     
     setErrorMessage = (errorT) => {
-        this.toast.show(errorT.toString(),2000)
+        this.toast.show(errorT.toString(),4000)
     }
 
     goToRegister = () => {
