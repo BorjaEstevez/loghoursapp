@@ -94,45 +94,49 @@ class AddEntry extends React.Component {
     const current = Firebase.auth().currentUser;
     console.log(current)
     this.goMainScreen();
-
     db.collection("users").doc(current.uid).collection("workingdays").doc(this.state.date.toDateString()).set({
       shiftStart: this.state.StartTime,
       shiftEnd: this.state.EndTime,
       workTask: this.state.worktask
     })
-    
 }
 
   render() {
     return (
 
       <View style={styles.container}>
-
+       
         <View style={styles.header}>
+          
           <View style={{ alignContent: "flex-start" }, { marginLeft: "1%" }, { marginRight: "20%" }}>
+           
             <TouchableOpacity onPress={() => this.goMainScreen()}
               style={styles.buttonpressed}>
+              
               <Icon name="arrow-left" size={40} color="#FFFFFF" />
             </TouchableOpacity>
           </View>
+          
           <Text style={styles.title}>
             Add Entry
                 </Text>
-
+          
           <View style={{ marginRight: "1%" }, { marginLeft: "20%" }}>
+            
             <TouchableOpacity onPress ={() => this.handleSave()}
             style={styles.buttonpressed}>
+            
             <Icon name="save" size={30} color="#000000" />
             </TouchableOpacity>
           </View>
-
         </View>
-
+        
         <View style={styles.field, { flexDirection: "row" }, { alignItems: "center" }, { marginBottom: 20 }}>
+          
           <Text style={{ fontSize: 20, marginRight: 10, fontWeight: 'bold', marginBottom: 10, marginTop: 50 }}>Date:</Text>
-
-          {this.state.show && Platform.OS === 'ios' && (
-            <DateTimePicker
+            {this.state.show && Platform.OS === 'ios' && (
+           
+           <DateTimePicker
               style={{ width: 320 }}
               mode={'date'}
               display="inline"
@@ -141,44 +145,56 @@ class AddEntry extends React.Component {
             />
           )}
           {this.state.show && Platform.OS === 'android' && (
-            <DateTimePicker
+           
+           <DateTimePicker
               mode={'date'}
               display="default"
               value={this.state.date}
               onChange={this.onChange}
             />
           )}
-
+         
           <Pressable
             onPress={this.toggle}>
+            
             <Text>
               {this.state.date.getDate()}.{this.state.date.getMonth() + 1}.{this.state.date.getFullYear()}
-
             </Text>
           </Pressable>
-
         </View>
-
+       
         <View style={styles.viewStyleForLine}></View>
+        
         <View style={styles.field, { flexDirection: "row" }}>
+          
           <Text style={{ fontSize: 20, marginTop: 10, marginRight: 10, fontWeight: 'bold' }}> From </Text>
+          
           <Button onPress = {this.showStartTimer} title = "Select starting time" />
           {this.state.showStart && (<DateTimePicker testID = "dateTimePicker" value = {this.state.start}
             mode = 'time' is24Hour = {true} onChange = {this.onChangeStart} />)} 
         </View>
+       
         <Text>{this.state.StartTime}</Text>
+        
         <View style= {{marginTop: 10, marginBottom: 10}}/>
+        
         <View style={styles.field, { flexDirection: "row" }}>
+          
           <Text style={{ fontSize: 20, marginTop: 15, marginRight: 10, fontWeight: 'bold' }}> To </Text>
+          
           <Button onPress = {this.showEndTimer} title = "Select ending time" />
           {this.state.showEnd && (<DateTimePicker testID = "dateTimePicker" value = {this.state.end}
             mode = 'time' is24Hour = {true} onChange = {this.onChangeEnd} />)}
         </View>
+       
         <Text> {this.state.EndTime} </Text>
+       
         <View style={styles.viewStyleForLine}></View>
+        
         <View style={styles.field}>
-          <Text style={{ fontSize: 20, marginTop: 5, marginRight: 10, fontWeight: 'bold' }}>Work task</Text>
           
+          <Text style={{ fontSize: 20, marginTop: 5, marginRight: 10, fontWeight: 'bold' }}>Work task</Text> 
+         
           <Picker
             selectedValue = {this.state.worktask}
             style = {{ height:50, width: 200}}
