@@ -24,9 +24,7 @@ class RegisterScreen extends React.Component {
             isValidName: true,
         }
     }
-
-
-    
+ 
     handleValidPassword = (val) => {
         if (val.trim().length >= 5) {
             this.state.isValidPassword = true;
@@ -36,7 +34,6 @@ class RegisterScreen extends React.Component {
         }
     }
 
-    
     handleValidName = (val) => {
         if (val.trim().length >= 1 && isNaN(val)) {
             this.state.isValidName = true;
@@ -50,7 +47,6 @@ class RegisterScreen extends React.Component {
         }
     }
 
-    
     handleValidEmail = (val) => {
         var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (val.trim().length >= 5) {
@@ -66,9 +62,6 @@ class RegisterScreen extends React.Component {
         }
     }
 
-   
-
-    
     handleValidUsername = (val) => {
         if (val.trim().length >= 1) {
             for (let item of this.state.users) {
@@ -87,8 +80,7 @@ class RegisterScreen extends React.Component {
             alert("The username must be longer than 1 character");
         }
     }
-
-    
+ 
     handleRegister = () => {
         if (this.state.isValidName) {
             if(this.state.name==""){
@@ -122,8 +114,7 @@ class RegisterScreen extends React.Component {
             }
         }
     }
-
-    
+ 
     goToLogin = () => {
         this.props.changeComponent('One');
     }
