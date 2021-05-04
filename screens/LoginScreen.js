@@ -6,6 +6,7 @@ import InputField from '../components/InputField';
 import Firebase from '../config/Firebasje';  
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 
 class LoginScreen extends React.Component {
@@ -58,6 +59,9 @@ class LoginScreen extends React.Component {
         }
     }
     
+    setErrorMessage = (errorT) => {
+        this.toast.show(errorT.toString(),2000)
+    }
 
     goToRegister = () => {
         this.props.changeComponent('Two');
@@ -83,7 +87,7 @@ class LoginScreen extends React.Component {
                     Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
                         .then(this.authSuccessfull) 
                         .then(this.goToMain) //Authentication was successfull
-                        .catch(error => alert('Password wrong')) //Authentication was not successfull
+                        .catch(error => this.setErrorMessage(error)) //Authentication was not successfull
                 }
             }
         }
@@ -120,6 +124,17 @@ class LoginScreen extends React.Component {
                 <StandardButton
                     buttonTitle="Log In"
                     onPress={()=>this.handleLogin()}
+                />
+
+                <Toast
+                    ref={(toast) => this.toast = toast}
+                    style={{ backgroundColor: 'red' }}
+                    position='top'
+                    positionValue={200}
+                    fadeInDuration={750}
+                    fadeOutDuration={1000}
+                    opacity={0.8}
+                    textStyle={{ color: 'white' }}
                 />
 
                 <TouchableOpacity style={styles.forgotButton} onPress={() => this.goToRegister()} >
