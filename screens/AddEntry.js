@@ -93,7 +93,7 @@ class AddEntry extends React.Component {
     const db = Firebase.firestore();
     const current = Firebase.auth().currentUser;
     console.log(current)
-   // this.goMainScreen();
+    this.goMainScreen();
 
     db.collection("users").doc(current.uid).collection("workingdays").doc(this.state.date.toDateString()).set({
       shiftStart: this.state.StartTime,
@@ -166,6 +166,7 @@ class AddEntry extends React.Component {
           {this.state.showStart && (<DateTimePicker testID = "dateTimePicker" value = {this.state.start}
             mode = 'time' is24Hour = {true} onChange = {this.onChangeStart} />)} 
         </View>
+        <Text>{this.state.StartTime}</Text>
         <View style= {{marginTop: 10, marginBottom: 10}}/>
         <View style={styles.field, { flexDirection: "row" }}>
           <Text style={{ fontSize: 20, marginTop: 15, marginRight: 10, fontWeight: 'bold' }}> To </Text>
@@ -173,7 +174,7 @@ class AddEntry extends React.Component {
           {this.state.showEnd && (<DateTimePicker testID = "dateTimePicker" value = {this.state.end}
             mode = 'time' is24Hour = {true} onChange = {this.onChangeEnd} />)}
         </View>
-
+        <Text> {this.state.EndTime} </Text>
         <View style={styles.viewStyleForLine}></View>
         <View style={styles.field}>
           <Text style={{ fontSize: 20, marginTop: 5, marginRight: 10, fontWeight: 'bold' }}>Work task</Text>

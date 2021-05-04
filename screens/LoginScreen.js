@@ -83,7 +83,7 @@ class LoginScreen extends React.Component {
                     Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
                         .then(this.authSuccessfull) 
                         .then(this.goToMain) //Authentication was successfull
-                        .catch(error => console.log(error)) //Authentication was not successfull
+                        .catch(error => alert('Password wrong')) //Authentication was not successfull
                 }
             }
         }
