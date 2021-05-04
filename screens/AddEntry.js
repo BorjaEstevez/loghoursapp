@@ -7,10 +7,10 @@ import Firebase from '../config/Firebasje';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { FloatingAction } from 'react-native-floating-action';
-import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {Picker} from '@react-native-picker/picker';
+import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 
 //OLD DROPDOWN PICKER
 //<DropDownPicker style={{ width: 150, backgroundColor: 'white' }} items={[
@@ -22,16 +22,21 @@ import {Picker} from '@react-native-picker/picker';
 //  onChangeItem={item => setTask(item.value)}
 //  zIndex={4000}
 //></DropDownPicker>
+
 class AddEntry extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      start: '',
-      end: '',
+      start: new Date(),
+      end: new Date(),
       date: new Date(),
       show: true,
+      showStart: false,
+      showEnd: false,
       worktask:'coding',
+      StartTime: "",
+      EndTime: "",
     };
   }
 
@@ -40,6 +45,38 @@ class AddEntry extends React.Component {
     currentDate = selectedDate || date;
     this.setState({ date: currentDate })
   };
+
+  onCancel() {
+    this.TimePicker.close();
+  }
+
+  showStartTimer = () => {
+    this.setState({
+      showStart: true
+    })
+  }
+
+  showEndTimer = () => {
+    this.setState({
+      showEnd: true
+    })
+  }
+
+  onChangeStart = (event, selectedDate) => {
+    console.log(selectedDate.getHours())
+    console.log(selectedDate.getMinutes())
+    this.setState({
+      showStart: false,
+      StartTime: `${selectedDate.toTimeString()}`
+    })
+  }
+
+  onChangeEnd = (event,selectedDate) => {
+    this.setState({
+      showEnd: false,
+      EndTime: `${selectedDate.toTimeString()}`
+    })
+  }
 
   toggle = () => {
     this.setState(state => ({
@@ -59,10 +96,9 @@ class AddEntry extends React.Component {
    // this.goMainScreen();
 
     db.collection("users").doc(current.uid).collection("workingdays").doc(this.state.date.toDateString()).set({
-      shiftStart: "startTime",
-      shiftEnd:"endTime",
-      workTask: "task"
-
+      shiftStart: this.state.StartTime,
+      shiftEnd: this.state.EndTime,
+      workTask: this.state.worktask
     })
     
 }
@@ -93,7 +129,7 @@ class AddEntry extends React.Component {
         </View>
 
         <View style={styles.field, { flexDirection: "row" }, { alignItems: "center" }, { marginBottom: 20 }}>
-          <Text style={{ fontSize: 20, marginRight: 10, fontWeight: 'bold', marginBottom: 10 }}>Date:</Text>
+          <Text style={{ fontSize: 20, marginRight: 10, fontWeight: 'bold', marginBottom: 10, marginTop: 50 }}>Date:</Text>
 
           {this.state.show && Platform.OS === 'ios' && (
             <DateTimePicker
@@ -124,22 +160,18 @@ class AddEntry extends React.Component {
         </View>
 
         <View style={styles.viewStyleForLine}></View>
-        <View style={styles.field}>
-          <Text style={{ fontSize: 20, marginTop: 10, marginRight: 10, fontWeight: 'bold' }}>From</Text>
-          <TextInput
-            style={styles.input}
-            keyboardType="numeric"
-            placeholder="Shift start">
-          </TextInput>
-        </View>
-
         <View style={styles.field, { flexDirection: "row" }}>
-          <Text style={{ fontSize: 20, marginTop: 15, marginRight: 10, fontWeight: 'bold' }}>To</Text>
-          <TextInput
-            style={styles.input}
-            keyboardType="numeric"
-            placeholder="Shift end">
-          </TextInput>
+          <Text style={{ fontSize: 20, marginTop: 10, marginRight: 10, fontWeight: 'bold' }}> From </Text>
+          <Button onPress = {this.showStartTimer} title = "Select starting time" />
+          {this.state.showStart && (<DateTimePicker testID = "dateTimePicker" value = {this.state.start}
+            mode = 'time' is24Hour = {true} onChange = {this.onChangeStart} />)} 
+        </View>
+        <View style= {{marginTop: 10, marginBottom: 10}}/>
+        <View style={styles.field, { flexDirection: "row" }}>
+          <Text style={{ fontSize: 20, marginTop: 15, marginRight: 10, fontWeight: 'bold' }}> To </Text>
+          <Button onPress = {this.showEndTimer} title = "Select ending time" />
+          {this.state.showEnd && (<DateTimePicker testID = "dateTimePicker" value = {this.state.end}
+            mode = 'time' is24Hour = {true} onChange = {this.onChangeEnd} />)}
         </View>
 
         <View style={styles.viewStyleForLine}></View>
@@ -204,7 +236,8 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     width: "75%",
     marginLeft: "12%",
-    marginTop: 70,
+    marginTop: 30,
+    marginBottom: 30,
     color: 'black'
   },
   buttonpressed: {
