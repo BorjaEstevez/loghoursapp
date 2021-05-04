@@ -10,18 +10,18 @@ import { FloatingAction } from 'react-native-floating-action';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from '@react-native-community/datetimepicker';
-//THIS IS THE OLD DATEPICKER, THAT DOESN'T WORKS, DON'T DELETE IT JUST IN CASE
-//<DatePicker
-//  date={this.date} // Initial date from state
-//    mode="date" // The enum of date, datetime and time
-//placeholder="select date"
-//format="DD-MM-YYYY"
-//minDate="01-01-2021"
-//maxDate="01-01-2100"
-//confirmBtnText="Confirm"
-//cancelBtnText="Cancel"
-// />
+import {Picker} from '@react-native-picker/picker';
 
+//OLD DROPDOWN PICKER
+//<DropDownPicker style={{ width: 150, backgroundColor: 'white' }} items={[
+//  { label: 'Coding', value: "coding" },
+//  { label: 'Paperwork', value: "paperwork" },
+//  { label: 'Cleaning', value: "Cleaning" },
+//  { label: 'Project planning', value: "project planning" },
+//]}
+//  onChangeItem={item => setTask(item.value)}
+//  zIndex={4000}
+//></DropDownPicker>
 class AddEntry extends React.Component {
 
   constructor(props) {
@@ -31,21 +31,14 @@ class AddEntry extends React.Component {
       end: '',
       date: new Date(),
       show: true,
+      worktask:'coding',
     };
   }
-  //const [date, setDate] = useState(new Date()); // State variable for the data.
-  //const [show,setShow] = useState(false); // State variable, that controls, if calendar is visible or not.
 
-  // I don't know if this onChange and toggle its properly code by the way.
-
-  onChange = (_, selectedDate) => {
-    // if (Platform.OS === 'ios') { 
-    this.setState({ show: false })
-    //this.state.show(false);
-    // }
+  onChange = (_, selectedDate) => { 
+    this.setState({ show: false }) 
     currentDate = selectedDate || date;
     this.setState({ date: currentDate })
-    //this.state.date(currentDate);
   };
 
   toggle = () => {
@@ -63,7 +56,7 @@ class AddEntry extends React.Component {
     const db = Firebase.firestore();
     const current = Firebase.auth().currentUser;
     console.log(current)
-    this.goMainScreen();
+   // this.goMainScreen();
 
     db.collection("users").doc(current.uid).collection("workingdays").doc(this.state.date.toDateString()).set({
       shiftStart: "startTime",
@@ -136,12 +129,7 @@ class AddEntry extends React.Component {
           <TextInput
             style={styles.input}
             keyboardType="numeric"
-            placeholder="Shift start"
-          // value={start}
-          //onChangeText={text => setStart(text)}
-
-          >
-
+            placeholder="Shift start">
           </TextInput>
         </View>
 
@@ -150,27 +138,23 @@ class AddEntry extends React.Component {
           <TextInput
             style={styles.input}
             keyboardType="numeric"
-            placeholder="Shift end"
-          //   value={end}
-          //onChangeText={text => setEnd(text)}
-
-          >
-
+            placeholder="Shift end">
           </TextInput>
         </View>
+
         <View style={styles.viewStyleForLine}></View>
         <View style={styles.field}>
           <Text style={{ fontSize: 20, marginTop: 5, marginRight: 10, fontWeight: 'bold' }}>Work task</Text>
-          <DropDownPicker style={{ width: 150, backgroundColor: 'white' }} items={[
-            { label: 'Coding', value: "coding" },
-            { label: 'Paperwork', value: "paperwork" },
-            { label: 'Cleaning', value: "Cleaning" },
-            { label: 'Project planning', value: "project planning" },
-          ]}
-            onChangeItem={item => setTask(item.value)}
-            zIndex={4000}
-          ></DropDownPicker>
-
+          
+          <Picker
+            selectedValue = {this.state.worktask}
+            style = {{ height:50, width: 200}}
+            onValueChange = {(itemValue, itemIndex) => this.setState({worktask: itemValue})}>
+            <Picker.Item label = "Coding" value = "coding"/>
+            <Picker.Item label = "Paperwork" value = "paperwork"/>
+            <Picker.Item label = "Cleaning" value = "cleaning"/>
+            <Picker.Item label = "Project planning" value = "project planing"/>
+            </Picker>
         </View>
       </View>
     );
@@ -213,7 +197,6 @@ const styles = StyleSheet.create({
   },
   field: {
     margin: 10,
-    flexDirection: "row"
   },
   viewStyleForLine: {
     borderBottomColor: "black",
