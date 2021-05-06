@@ -39,10 +39,8 @@ class MainScreen extends React.Component {
                 workdata.push(doc.data());
                 //  console.log(doc.id)
             });
-
             this.setState({ WorkData: workdata })
             console.log(this.state.WorkData)
-
         });
     }
 
